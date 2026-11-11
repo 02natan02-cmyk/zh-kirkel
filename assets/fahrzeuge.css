@@ -442,3 +442,7 @@ html.fz-lock,html.fz-lock body{overflow:hidden}
 .fz-mon-hint{min-height:44px;display:flex;align-items:center}
 input[type=range]{min-height:44px}
 .fz-stats a{display:inline-flex;align-items:center;min-height:44px}
+/* 11.11.: Beim Öffnen/Schließen eines Fahrzeugs darf sich die Seitenbreite nicht ändern (Scrollleiste),
+   sonst rechnet die Scroll-Animation alles neu und die Seite springt; Scrollen im Fenster nicht an die Seite weitergeben */
+html{scrollbar-gutter:stable}
+.fz-sheet,.fz-sheet-box{overscroll-behavior:contain}

@@ -307,6 +307,9 @@
     odo(S('odo'), d.km);
     box.scrollTop = 0;
   };
+  let lockY = 0;
+  // Beim Zurück-Button stellt der Browser sonst selbst eine alte Scrollposition her und kämpft mit der Scroll-Engine
+  try { history.scrollRestoration = 'manual'; } catch (e) {}
   const open = (id, from, { push = true } = {}) => {
     if (!byId(id)) return;
     clearTimeout(hideT);
@@ -314,6 +317,7 @@
     fill(id);
     if (!isOpen) {
       sheet.hidden = false; void sheet.offsetWidth; sheet.classList.add('open');
+      lockY = scrollY; const L = window.feLenis; if (L) L.stop();
       root.classList.add('fz-lock'); isOpen = true;
       setTimeout(() => { const x = $('.fz-x', sheet); x && x.focus({ preventScroll: true }); }, 60);
     }
@@ -325,6 +329,9 @@
   const hide = () => {
     if (!isOpen) return;
     isOpen = false; sheet.classList.remove('open'); root.classList.remove('fz-lock');
+    // Scrollposition festhalten und die weiche Scroll-Engine wieder exakt dort starten (sonst springt die Seite hoch und runter)
+    const L = window.feLenis; if (Math.abs(scrollY - lockY) > 2) scrollTo(0, lockY);
+    if (L) { L.scrollTo(lockY, { immediate: true, force: true }); L.start(); }
     hideT = setTimeout(() => { sheet.hidden = true; S('stage').innerHTML = ''; S('stage').classList.remove('gal'); }, 560);
     if (opener && document.contains(opener)) { try { opener.focus({ preventScroll: true }); } catch (e) {} }
   };
