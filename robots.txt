@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zh-kirkel.de/sitemap.xml
