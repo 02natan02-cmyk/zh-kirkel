@@ -4,7 +4,7 @@
   if (!sec) return;
   const pin = sec.querySelector('.kf-pin'), cv = sec.querySelector('.kf-cv'), ctx = cv.getContext('2d');
   const cards = [...sec.querySelectorAll('.kfc')], bar = sec.querySelector('.kf-bar i');
-  const N = +sec.dataset.n || 93, reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const N = +sec.dataset.n || 165, reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const portrait = () => innerWidth / innerHeight < 0.9;
   let dir = portrait() ? 'm' : 'd', imgs = [], loaded = false, cur = -1, want = 0;
   const src = i => `seq/kf/${dir}/k${String(i + 1).padStart(3, '0')}.webp`;
