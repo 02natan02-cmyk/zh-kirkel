@@ -79,11 +79,14 @@
   const intro = $('.intro');
   const heroIn = () => { if (!hasG || reduce || !$('.hero-c')) return; gsap.from('.hero-c > *', { y: 46, opacity: .01, duration: 1.2, ease: 'power3.out', stagger: .09 }); gsap.from('.hud > span', { opacity: 0, duration: 1, delay: .4, stagger: .1 }); };
   if (intro) {
-    /* Seifenblasen-Intro kommt bei jedem Öffnen der Startseite (auch beim Neuladen) – nur nicht, wenn man innerhalb der Seite zurück auf Start klickt. ?intro erzwingt, ?nointro überspringt. */
+    /* Seifenblasen-Intro nur beim ersten Besuch (localStorage zh-intro), höchstens ~2 s, Klick öffnet sofort. ?intro erzwingt, ?nointro überspringt. */
     const force = /[?&]intro\b/.test(location.search), skip = /[?&]nointro/.test(location.search);
     let navType = ''; try { navType = (performance.getEntriesByType('navigation')[0] || {}).type || ''; } catch (e) {}
     let inside = false; try { const r = new URL(document.referrer), base = location.pathname.replace(/[^/]*$/, ''); inside = r.origin === location.origin && r.pathname.startsWith(base); } catch (e) {}
-    const show = hasG && !skip && (force || (!reduce && (!inside || navType === 'reload')));
+    let seen = false; try { seen = localStorage.getItem('zh-intro') === '1'; } catch (e) {}
+    /* Natan 11.11.: Intro nur beim allerersten Besuch, danach nie wieder (pro Gerät). */
+    const show = hasG && !skip && (force || (!reduce && !seen && !inside));
+    if (show) { try { localStorage.setItem('zh-intro', '1'); } catch (e) {} }
     if (!show) { intro.classList.add('gone'); heroIn(); }
     else {
       intro.classList.remove('gone'); intro.removeAttribute('aria-hidden'); intro.setAttribute('role', 'dialog'); intro.setAttribute('aria-label', 'Intro'); lenis && lenis.stop(); root.style.overflow = 'hidden';
@@ -117,13 +120,13 @@
         ctx.clearRect(0, 0, W, H);
         for (const b of bubbles) {
           if (b.dead) continue;
-          if (b.big) { const p = Math.min(1, t / 1.5), e = 1 - Math.pow(1 - p, 3); b.y = (H + S() * .45) + (H / 2 - (H + S() * .45)) * e; b.x = W / 2 + Math.sin(t * 1.3) * 8 * dpr; b.r = S() * (.3 + .03 * Math.sin(t * 2.2)); }
+          if (b.big) { const p = Math.min(1, t / .8), e = 1 - Math.pow(1 - p, 3); b.y = (H + S() * .45) + (H / 2 - (H + S() * .45)) * e; b.x = W / 2 + Math.sin(t * 1.3) * 8 * dpr; b.r = S() * (.3 + .03 * Math.sin(t * 2.2)); }
           else { b.y += b.vy * dt; b.x += Math.sin(t * 1.2 + b.wob) * 12 * dpr * dt; if (b.y < -b.r * 2) Object.assign(b, mk(false), { y: H + b.r * 2 }); }
           film(b, t);
         }
         for (const r of rings) { r.l -= dt * (r.big ? 1.6 : 3); r.r += dt * (r.big ? 600 : 200) * dpr; if (r.l <= 0) continue; ctx.strokeStyle = `rgba(160,245,250,${r.l * .5})`; ctx.lineWidth = 2 * dpr * r.l; ctx.beginPath(); ctx.arc(r.x, r.y, r.r, 0, 7); ctx.stroke(); }
         for (const d of drops) { d.vy += 900 * dpr * dt; d.vx *= .985; d.x += d.vx * dt; d.y += d.vy * dt; d.l -= dt * .9; if (d.l <= 0) continue; ctx.fillStyle = `hsla(${d.h},90%,82%,${d.l})`; ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, 7); ctx.fill(); }
-        if (!mainPopped && t > 1.85) { mainPopped = true; pop(main); reveal(); }
+        if (!mainPopped && t > .9) { mainPopped = true; pop(main); reveal(); }
       };
       requestAnimationFrame(loop);
       const reveal = () => {
@@ -132,9 +135,10 @@
         gsap.from(mark.querySelectorAll('.lg-bub circle'), { scale: 0, transformOrigin: 'center', transformBox: 'fill-box', duration: .5, ease: 'back.out(3)', stagger: .06, delay: .25 });
       };
       gsap.to(mark, { opacity: .28, duration: 1.2, delay: .3 });
-      intro.addEventListener('pointerdown', e => { const x = e.clientX * dpr, y = e.clientY * dpr; for (const b of bubbles) { if (!b.dead && Math.hypot(b.x - x, b.y - y) < b.r) { pop(b); if (b.big && !mainPopped) { mainPopped = true; reveal(); } else if (!b.big) setTimeout(() => { Object.assign(b, mk(false)); b.dead = false; }, 900); break; } } });
-      let fin = false; const done = () => { if (fin) return; fin = true; gsap.to(intro, { yPercent: -100, duration: .9, ease: 'power3.inOut', onComplete: () => { run = false; intro.classList.add('gone'); intro.setAttribute('aria-hidden', 'true'); } }); root.style.overflow = ''; lenis && lenis.start(); setTimeout(heroIn, 250); };
-      setTimeout(done, 4300); setTimeout(() => { if (!fin) { fin = true; run = false; intro.classList.add('gone'); intro.setAttribute('aria-hidden', 'true'); root.style.overflow = ''; lenis && lenis.start(); } }, 8000);
+      /* Klick/Tipp irgendwo: Blase platzt und die Seite geht sofort auf */
+      intro.addEventListener('pointerdown', e => { const x = e.clientX * dpr, y = e.clientY * dpr; for (const b of bubbles) { if (!b.dead && Math.hypot(b.x - x, b.y - y) < b.r) { pop(b); break; } } if (!mainPopped) { mainPopped = true; pop(main); reveal(); } setTimeout(done, 280); });
+      let fin = false; const done = () => { if (fin) return; fin = true; gsap.to(intro, { yPercent: -100, duration: .6, ease: 'power3.inOut', onComplete: () => { run = false; intro.classList.add('gone'); intro.setAttribute('aria-hidden', 'true'); } }); root.style.overflow = ''; lenis && lenis.start(); setTimeout(heroIn, 250); };
+      setTimeout(() => done(), 1600); setTimeout(() => { if (!fin) { fin = true; run = false; intro.classList.add('gone'); intro.setAttribute('aria-hidden', 'true'); root.style.overflow = ''; lenis && lenis.start(); } }, 4500);
       $('.intro-skip').addEventListener('click', e => { e.stopPropagation(); if (!mainPopped) { mainPopped = true; pop(main); reveal(); } setTimeout(done, 350); });
     }
   } else heroIn();
