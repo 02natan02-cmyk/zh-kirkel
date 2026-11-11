@@ -14,6 +14,7 @@
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
   const WA = t => 'https://wa.me/4917624401827?text=' + encodeURIComponent(t);
   const TEL = 'tel:+496841890200';
+  const MAIL = window.ZH_MAIL || '';
   const store = {
     get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
     set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
@@ -286,7 +287,7 @@
     }
     const ord = order(); S('pos').textContent = `${ord.indexOf(String(d.id)) + 1} / ${ord.length}`;
     S('src').className = 'fz-src ' + d.src;
-    S('src').innerHTML = (d.src === 'wa' ? ICON_WA + '<span>Per WhatsApp eingestellt · ' : d.src === 'hof' ? ICON_HOF + '<span>Auf dem Hof seit ' : ICON_SYNC + '<span>Automatisch aus mobile.de · ') + dmy(d.added) + '</span>';
+    S('src').innerHTML = (d.src === 'wa' ? ICON_WA + '<span>Per WhatsApp eingestellt · ' : d.src === 'hof' ? ICON_HOF + '<span>Auf dem Hof seit ' : ICON_SYNC + '<span>Automatisch aus AutoScout24 · ') + dmy(d.added) + '</span>';
     S('t').innerHTML = `<span>${esc(d.make)}</span> ${esc(d.model)}`;
     S('v').textContent = d.variant;
     S('res').hidden = d.status !== 'reserviert';
@@ -300,6 +301,8 @@
     S('cta').innerHTML = `<a class="btn btn-wa wide" href="${WA(`Hallo Z&H, ich interessiere mich für den ${name} (Nummer ${d.id}, ${eur(d.price)}). Ist er noch zu haben?`)}" target="_blank" rel="noopener">${ICON_WA}Per WhatsApp anfragen</a>`
       + `<a class="btn btn-aqua" href="${TEL}">Anrufen</a>`
       + `<a class="btn btn-line" href="${WA(`Hallo Z&H, ich würde den ${name} (Nummer ${d.id}) gern Probe fahren. Wann passt es Ihnen?`)}" target="_blank" rel="noopener">Probefahrt</a>`
+      + (MAIL ? `<a class="btn btn-line" href="mailto:${MAIL}?subject=${encodeURIComponent(`Anfrage ${name} (Nummer ${d.id})`)}&body=${encodeURIComponent(`Hallo Z&H,\n\nich interessiere mich für den ${name} (Nummer ${d.id}, ${eur(d.price)}).\n${location.href.split('#')[0]}#fz-${d.id}\n\nBitte melden Sie sich bei mir.\nName: \nTelefon: \n`)}">E-Mail</a>` : '')
+      + `<button class="btn btn-line" type="button" data-fz-share="${d.id}">Teilen</button>`
       + `<a class="fzs-trade" href="${WA(`Hallo Z&H, ich interessiere mich für den ${name} (Nummer ${d.id}) und möchte mein jetziges Auto in Zahlung geben.\nMarke und Modell: \nBaujahr: \nKilometer: `)}" target="_blank" rel="noopener">Eigenes Auto in Zahlung geben <span aria-hidden="true">→</span></a>`;
     odo(S('odo'), d.km);
     box.scrollTop = 0;
@@ -517,6 +520,15 @@
     update();
   }
 
+  // Fahrzeug teilen: Handy-Teilen-Menü, sonst Link kopieren
+  document.addEventListener('click', async e => {
+    const b = e.target.closest('[data-fz-share]'); if (!b) return;
+    const d = byId(b.dataset.fzShare); if (!d) return;
+    const url = location.href.split('#')[0].split('?')[0] + '#fz-' + d.id, title = `${d.make} ${d.model} bei Z&H Aufbereitung`;
+    try { if (navigator.share) { await navigator.share({ title, text: `${d.make} ${d.model} · ${eur(d.price)}`, url }); return; } } catch (err) { if (err && err.name === 'AbortError') return; }
+    try { await navigator.clipboard.writeText(url); b.textContent = 'Link kopiert'; } catch (err) { b.textContent = 'Link: ' + url; }
+    setTimeout(() => { b.textContent = 'Teilen'; }, 2600);
+  });
   // Direktlink #fz-1048 öffnet das Fahrzeug
   const m = location.hash.match(/^#fz-(\d+)$/);
   if (m && byId(m[1])) setTimeout(() => open(m[1], null, { push: false }), 650);
