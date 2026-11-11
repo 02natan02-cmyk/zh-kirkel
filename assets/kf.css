@@ -60,3 +60,8 @@
   .kf-plus{gap:4px}.kf-plus li{font-size:13.5px}
 }
 @media (prefers-reduced-motion:reduce){.kfc{transition:none}.kf-hint .hand{animation:none}}
+@media (max-height:760px) and (min-width:821px){
+  .kf-tag{top:auto;bottom:calc(46px + var(--sb))}
+  .kfc .h2{font-size:clamp(30px,4.4vh,44px)}
+  .kf-plus{gap:6px}.kf-plus li{font-size:15px}
+}
