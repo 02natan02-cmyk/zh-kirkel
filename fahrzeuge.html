@@ -11,10 +11,10 @@
 <link rel="icon" href="img/favicon.png"><link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="preload" href="fonts/unbounded-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*.html"},{"not":{"selector_matches":"[target=_blank]"}}]},"eagerness":"moderate"},{"urls":["leistungen.html","fahrzeuge.html","leasing.html","kontakt.html"],"eagerness":"eager"}]}</script>
-<link rel="stylesheet" href="assets/style.css?v=1795101006">
-<link rel="stylesheet" href="assets/kf.css?v=1795101006">
+<link rel="stylesheet" href="assets/style.css?v=1795101842">
+<link rel="stylesheet" href="assets/kf.css?v=1795101842">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "AutoWash", "@id": "https://zh-kirkel.de/#betrieb", "url": "https://zh-kirkel.de/", "name": "Z&H Aufbereitung", "alternateName": "ZH KFZ Aufbereitung", "founder": "Ali Fakih", "telephone": "+496841890200", "email": "info@zh-kirkel.de", "address": {"@type": "PostalAddress", "streetAddress": "Ortsstraße 14", "postalCode": "66459", "addressLocality": "Kirkel-Altstadt", "addressCountry": "DE"}, "geo": {"@type": "GeoCoordinates", "latitude": 49.3195934, "longitude": 7.2845028}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:00", "closes": "16:30"}]}</script>
-<link rel="stylesheet" href="assets/fahrzeuge.css?v=1795101006">
+<link rel="stylesheet" href="assets/fahrzeuge.css?v=1795101842">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Z&H Aufbereitung", "url": "https://zh-kirkel.de/", "inLanguage": "de-DE"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Start", "item": "https://zh-kirkel.de/"}, {"@type": "ListItem", "position": 2, "name": "Fahrzeuge", "item": "https://zh-kirkel.de/fahrzeuge.html"}]}</script>
 </head>
 <body>
@@ -127,18 +127,17 @@
   <div class="wrap fz-an-g">
     <div class="fz-an-l">
     <div class="fz-an-head">
-      <header class="ch-head "><p class="ch-num"><b>02</b><span>Ankauf</span></p><h2 class="h2"><span id="fz-ah">Möchten Sie Ihr Auto verkaufen?</span></h2><p class="lead">Schicken Sie uns die wichtigsten Daten und ein paar Fotos – per Formular oder per WhatsApp. Wir sehen uns Ihr Auto an und machen Ihnen ein Angebot. Auch, wenn Sie es bei uns in Zahlung geben möchten.</p></header>
+      <header class="ch-head "><p class="ch-num"><b>02</b><span>Ankauf</span></p><h2 class="h2"><span id="fz-ah">Möchten Sie Ihr Auto verkaufen?</span></h2><p class="lead">Schicken Sie uns die wichtigsten Daten und ein paar Fotos – per WhatsApp oder E-Mail. Wir sehen uns Ihr Auto an und machen Ihnen ein Angebot. Auch, wenn Sie es bei uns in Zahlung geben möchten.</p></header>
     </div>
     <div class="fz-an-steps">
       <ol class="fz-steps" data-steps>
-        <li><b>Daten und Fotos schicken</b><span>Per Formular oder WhatsApp – in zwei Minuten erledigt.</span></li>
+        <li><b>Daten und Fotos schicken</b><span>Per WhatsApp oder E-Mail – in zwei Minuten erledigt.</span></li>
         <li><b>Kurz ansehen</b><span>Probefahrt und ein Blick auf Lack, Technik und Papiere, bei uns auf dem Hof.</span></li>
         <li><b>Klares Angebot</b><span>Sie bekommen ein Angebot und entscheiden in Ruhe.</span></li>
       </ol>
     </div>
     </div>
-    <form class="fz-form" id="fz-sell" action="https://formsubmit.co/info@zh-kirkel.de" method="POST" enctype="multipart/form-data" data-sell>
-      <input type="hidden" name="_subject" value="Ankauf-Anfrage über die Website"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value=""><input type="text" name="_honey" class="fzf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <form class="fz-form" id="fz-sell" data-sell>
       <div class="fzf-head"><h3>Ihr Auto anbieten</h3><span>unverbindlich</span></div>
       <div class="fzf-body" data-sell-body>
         <label class="fzf-in"><span>Marke und Modell</span><input name="Fahrzeug" required autocomplete="off" placeholder="zum Beispiel VW Golf 7 Variant" data-sell-car><em class="fzf-hint" data-sell-hint aria-hidden="true"><svg class="hand" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.2 11.2V4.6a1.6 1.6 0 0 1 3.2 0v5.2h.4V8.6a1.6 1.6 0 0 1 3.2 0v1.6h.4v-.7a1.6 1.6 0 0 1 3.2 0v5.6c0 3.6-2.8 6.5-6.4 6.5h-1.3a6.3 6.3 0 0 1-4.9-2.3l-3.4-4.2a1.7 1.7 0 0 1 2.5-2.2l1.9 1.8z"/></svg><b>Hier starten</b></em></label>
@@ -149,10 +148,7 @@
         <fieldset class="fzf-chips"><legend>Kraftstoff</legend><label class="fzf-chip"><input type="radio" name="Kraftstoff" value="Benzin"><span>Benzin</span></label><label class="fzf-chip"><input type="radio" name="Kraftstoff" value="Diesel"><span>Diesel</span></label><label class="fzf-chip"><input type="radio" name="Kraftstoff" value="Hybrid"><span>Hybrid</span></label><label class="fzf-chip"><input type="radio" name="Kraftstoff" value="Elektro"><span>Elektro</span></label><label class="fzf-chip"><input type="radio" name="Kraftstoff" value="Gas"><span>Gas</span></label></fieldset>
         <fieldset class="fzf-chips"><legend>Getriebe</legend><label class="fzf-chip"><input type="radio" name="Getriebe" value="Schaltgetriebe"><span>Schaltgetriebe</span></label><label class="fzf-chip"><input type="radio" name="Getriebe" value="Automatik"><span>Automatik</span></label></fieldset>
         <fieldset class="fzf-chips"><legend>Zustand</legend><label class="fzf-chip"><input type="radio" name="Zustand" value="Top gepflegt"><span>Top gepflegt</span></label><label class="fzf-chip"><input type="radio" name="Zustand" value="Normale Gebrauchsspuren"><span>Normale Gebrauchsspuren</span></label><label class="fzf-chip"><input type="radio" name="Zustand" value="Mit Mängeln oder Unfall"><span>Mit Mängeln oder Unfall</span></label></fieldset>
-        <div class="fzf-photos">
-          <label class="fzf-drop"><input type="file" name="Foto" accept="image/*" multiple data-sell-pick><span class="fzf-drop-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 8.5c0-.8.6-1.4 1.4-1.4h2.6L9.2 4.6h5.6l1.7 2.5h2.6c.8 0 1.4.6 1.4 1.4v9.6c0 .8-.6 1.4-1.4 1.4H4.9c-.8 0-1.4-.6-1.4-1.4z"/><circle cx="12" cy="13" r="3.6"/></svg></span><span class="fzf-drop-t"><b>Fotos hinzufügen</b><small data-sell-pmsg>Bis zu 4 Fotos: außen, innen, Tacho</small></span></label>
-          <ul class="fzf-thumbs" data-sell-thumbs></ul>
-        </div>
+        <p class="fzf-photohint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 8.5c0-.8.6-1.4 1.4-1.4h2.6L9.2 4.6h5.6l1.7 2.5h2.6c.8 0 1.4.6 1.4 1.4v9.6c0 .8-.6 1.4-1.4 1.4H4.9c-.8 0-1.4-.6-1.4-1.4z"/><circle cx="12" cy="13" r="3.6"/></svg><span><b>Fotos?</b> Die schicken Sie gleich im WhatsApp-Chat hinterher: außen, innen und den Tacho.</span></p>
         <label class="fzf-in fzf-unit"><span>Ihre Preisvorstellung <small>(optional)</small></span><input name="Preisvorstellung" inputmode="numeric" autocomplete="off" placeholder="zum Beispiel 9.500" data-sell-num><i aria-hidden="true">€</i></label>
         <div class="fzf-two">
           <label class="fzf-in"><span>Ihr Name</span><input name="Name" required autocomplete="name"></label>
@@ -162,14 +158,14 @@
         <label class="fzf-in"><span>Wie sind Sie auf uns aufmerksam geworden? <small>(optional)</small></span><select name="Aufmerksam geworden durch"><option value="">Bitte wählen</option><option>Google-Suche</option><option>Google Maps</option><option>ChatGPT oder andere KI</option><option>Empfehlung</option><option>Vorbeigefahren</option><option>Sonstiges</option></select></label>
         <label class="fzf-in"><span>Noch etwas? <small>(optional)</small></span><textarea name="Hinweise" rows="2" placeholder="zum Beispiel Scheckheft, neuer TÜV, kleine Delle hinten"></textarea></label>
         <div class="fzf-sum" aria-live="polite"><div class="fzf-sum-car" aria-hidden="true"><svg viewBox="0 0 80 34"><path d="M4 26h72M12 26c0-4 3-7 7-7s7 3 7 7m30 0c0-4 3-7 7-7s7 3 7 7M4 26v-7l5-10h40l14 9 13 2v6"/></svg></div><div class="fzf-sum-t"><b data-sum-car>Ihr Auto</b><span data-sum-meta>Ihre Angaben erscheinen hier.</span><span class="fzf-bar"><i data-sum-bar></i></span><small data-sum-left>Noch 5 Pflichtangaben</small></div></div>
-        <div class="fzf-go"><button class="btn btn-aqua" type="submit" data-sell-send>Angebot anfordern</button><button class="btn btn-wa" type="button" data-sell-wa><svg class="wai" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.1.1.7-.2 1.4z"/></svg>Per WhatsApp senden</button></div>
+        <div class="fzf-go"><button class="btn btn-wa" type="submit" data-sell-send><svg class="wai" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.1.1.7-.2 1.4z"/></svg>Per WhatsApp senden</button><button class="btn btn-line" type="button" data-sell-mail>Lieber per E-Mail</button></div>
         <p class="fzf-note">Ihre Angaben verwenden wir nur, um Ihnen ein Angebot zu machen (<a href="datenschutz.html#ankauf">Datenschutz</a>). Lieber anrufen? <a href="tel:+496841890200">06841 / 890 200</a></p>
       </div>
       <div class="fzf-done" data-sell-done hidden tabindex="-1">
         <span class="fzf-check" aria-hidden="true"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="23"/><path d="M15.5 27l7 7 14-15"/></svg></span>
-        <h3>Anfrage ist angekommen.</h3>
-        <p>Danke! Wir sehen uns die Angaben an und melden uns bei Ihnen – mit einem Angebot.</p>
-        <div class="ctas"><a class="btn btn-wa" href="https://wa.me/4917624401827?text=Hallo%20Z%26H%2C%20ich%20habe%20Ihnen%20eben%20%C3%BCber%20die%20Website%20mein%20Auto%20angeboten.%20Hier%20noch%20weitere%20Fotos%3A" target="_blank" rel="noopener"><svg class="wai" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.1.1.7-.2 1.4z"/></svg>Weitere Fotos per WhatsApp</a><button class="btn btn-line" type="button" data-sell-again>Noch ein Auto anbieten</button></div>
+        <h3>Fast geschafft.</h3>
+        <p>Ihre Nachricht ist fertig vorbereitet. Schicken Sie sie in WhatsApp oder in Ihrem E-Mail-Programm ab und hängen Sie Ihre Fotos an. Wir melden uns mit einem Angebot.</p>
+        <div class="ctas"><a class="btn btn-wa" href="https://wa.me/4917624401827?text=Hallo%20Z%26H%2C%20ich%20habe%20Ihnen%20eben%20%C3%BCber%20die%20Website%20mein%20Auto%20angeboten.%20Hier%20noch%20weitere%20Fotos%3A" target="_blank" rel="noopener"><svg class="wai" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.1.1.7-.2 1.4z"/></svg>WhatsApp nochmal öffnen</a><button class="btn btn-line" type="button" data-sell-again>Noch ein Auto anbieten</button></div>
       </div>
     </form>
   </div>
@@ -270,9 +266,11 @@
 <script src="js/gsap.min.js"></script>
 <script src="js/ScrollTrigger.min.js"></script>
 <script src="js/lenis.min.js"></script>
-<script src="assets/wisch.js?v=1795101006"></script>
-<script src="assets/app.js?v=1795101006"></script>
-<script src="assets/fe-bewertung.js?v=1795101006" data-url="https://search.google.com/local/writereview?placeid=ChIJVUnSbj_FlUcRR0EBbpSfpn4" data-accent="#077a80" data-skip="impressum|datenschutz" data-bottom="22" data-bottom-m="96" defer></script>
-<script src="assets/fahrzeuge.js?v=1795101006"></script>
+<script src="assets/wisch.js?v=1795101842"></script>
+<script src="assets/app.js?v=1795101842"></script>
+<script src="assets/fe-bewertung.js?v=1795101842" data-url="https://search.google.com/local/writereview?placeid=ChIJVUnSbj_FlUcRR0EBbpSfpn4" data-accent="#077a80" data-skip="impressum|datenschutz" data-bottom="22" data-bottom-m="96" defer></script>
+<script src="assets/fahrzeuge.js?v=1795101842"></script>
+<script data-goatcounter="https://zh-kirkel.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script>document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href^="https://wa.me"],a[href^="tel:"],a[href^="mailto:"]');if(!a||!window.goatcounter||!goatcounter.count)return;var h=a.getAttribute("href"),k=h.indexOf("wa.me")>-1?"whatsapp":h.indexOf("tel:")===0?"anruf":"email";goatcounter.count({path:"klick-"+k,title:"Klick "+k+" ("+(location.pathname.replace(/^\/|\.html$/g,"")||"start")+")",event:true})});</script>
 </body>
 </html>

@@ -249,6 +249,9 @@ a.fz-mon-hint span{text-decoration:underline;text-decoration-color:rgba(63,224,2
 .fzf-chip input:active+span{transform:scale(.96)}
 @media (hover:hover){.fzf-chip input:not(:checked):hover+span{background:#e1e9e9}}
 .fzf-photos{display:grid;gap:10px}
+.fzf-photohint{display:flex;align-items:center;gap:12px;margin:0;padding:12px 14px;border:1.5px dashed rgba(10,166,173,.45);border-radius:16px;background:rgba(63,224,229,.07);font-size:14px;line-height:1.45}
+.fzf-photohint svg{width:40px;height:40px;flex:none;padding:8px;border-radius:12px;background:var(--ink);fill:none;stroke:var(--aqua);stroke-width:1.8;stroke-linejoin:round}
+.fzf-photohint b{display:block}
 .fzf-drop{position:relative;display:flex;align-items:center;gap:14px;padding:14px 16px;border:2px dashed rgba(10,166,173,.45);border-radius:18px;background:rgba(63,224,229,.07);cursor:pointer;transition:background .2s,border-color .2s}
 .fzf-drop input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
 .fzf-drop:hover,.fzf-drop.drag,.fzf-drop:focus-within{background:rgba(63,224,229,.14);border-color:var(--teal)}
