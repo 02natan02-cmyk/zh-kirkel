@@ -27,7 +27,7 @@
   const step = () => {
     const rect = sec.getBoundingClientRect(), span = sec.offsetHeight - innerHeight;
     const p = Math.max(0, Math.min(1, -rect.top / Math.max(1, span)));
-    if (rect.top < innerHeight * 2.2 && rect.bottom > -innerHeight) load();
+    if (rect.top < innerHeight * 4 && rect.bottom > -innerHeight) load();
     want = reduce ? (N - 1) * Math.round(p * 2) / 2 : p * (N - 1);
     draw(false);
     if (bar) bar.style.transform = `scaleX(${p})`;
@@ -37,5 +37,8 @@
   let raf = 0; const tick = () => { raf = 0; step(); };
   addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(tick); }, { passive: true });
   addEventListener('resize', () => { const nd = portrait() ? 'm' : 'd'; if (nd !== dir && loaded) { dir = nd; loaded = false; sec.classList.remove('on'); load(); } fit(); step(); });
+  /* Vorladen: kurz nach dem Laden der Seite in Ruhe nachladen (nicht bei Datensparmodus) */
+  const sd = navigator.connection && navigator.connection.saveData;
+  if (!sd) addEventListener('load', () => setTimeout(() => (window.requestIdleCallback || setTimeout)(load), 2500));
   fit(); step();
 })();
