@@ -1008,3 +1008,6 @@ p,li,figcaption,dd,blockquote{text-wrap:pretty}
 .cer-line i::before,.cer-line i::after{content:"";position:absolute;top:50%;margin-top:-6px;border:6px solid transparent}
 .cer-line i::before{left:7px;border-right-color:#fff}.cer-line i::after{right:7px;border-left-color:#fff}
 .stage.cer .rl{z-index:5}
+
+/* E-Mail-Karte über die ganze Breite (Kontakt) */
+.k-g .kc-mail{grid-column:1/-1}.kc-mail b{overflow-wrap:anywhere}
